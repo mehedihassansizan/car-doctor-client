@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 
 
 const NavBar = () => {
-    const { user, logOut } = useAuth();
+    const { user, logOut  } = useAuth();
     // const {user, logOut} = useContext(AuthContext);
 
     const handleLogOut = () => {
@@ -25,6 +25,8 @@ const NavBar = () => {
             : <li> <Link to="/login">Login</Link> </li>
         }
     </>
+
+
     return (
         <div className="navbar bg-base-100 h-28 mb-4">
             <div className="navbar-start">

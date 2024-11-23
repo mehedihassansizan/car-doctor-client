@@ -1,16 +1,15 @@
 // import { useEffect, useState } from "react";
-import { useState } from "react";
-import useServices from "../../../hooks/useServices";
+import { useEffect, useState } from "react";
 import ServiceCard from "./ServiceCard";
 
 // DRY --> Do not Repeat Yourself
 const Services = () => {
     const [asc, setAsc] = useState(true);
-    const [search, setSearch] = useState('');
+    // const [search, setSearch] = useState('');
     // const [min, setMin] = useState(undefined);
     // const [max, setMax] = useState(undefined);
-    const services = useServices(asc, search);
-    // const [services, setServices] = useState([]);
+    // const services = useServices(asc, search);
+    const [services, setServices] = useState([]);
 
     // useEffect(() => {
     //     fetch(`https://car-doctor-server-topaz-one.vercel.app/services?sort=${asc? 'asc' : 'des'}&search=${search}`)
@@ -18,11 +17,17 @@ const Services = () => {
     //         .then(data => setServices(data));
     // }, [])
 
+    useEffect(()=>{
+        fetch("http://localhost:5000/services")
+        .then((res) => res.json())
+        .then((data) => setServices(data));
+    },[])
+
     const handleSearch = e =>{
         e.preventDefault();
         const searchText = e.target.search.value;
         // console.log(searchText);
-        setSearch(searchText);
+        setServices(searchText);
     }
 
     return (

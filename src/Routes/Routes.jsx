@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
+import BookService from "../pages/BookService/BookService";
+import Bookings from "../pages/Bookings/Bookings";
+import About from "../pages/Home/About/About";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
-import BookService from "../pages/BookService/BookService";
-import Bookings from "../pages/Bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
             element: <Home></Home>
         }, 
         {
+            path: '/about',
+            element: <About></About>
+        }, 
+        {
             path: 'login', 
             element: <Login></Login>
         }, 
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
         {
           path: 'book/:id', 
           element: <PrivateRoute><BookService></BookService></PrivateRoute>, 
-          loader: ({params}) => fetch(`https://car-doctor-server-topaz-one.vercel.app/services/${params.id}`)
+          loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
         },
         {
           path: 'bookings', 
